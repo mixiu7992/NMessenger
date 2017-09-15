@@ -177,7 +177,7 @@ open class MessageNode: GeneralMessengerCell {
             
             let cellOrientation = isIncomingMessage ? [ins, contentSizeLayout] : [contentSizeLayout,ins]
             
-            layoutSpecs = ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: justifyLocation, alignItems: .end, children: cellOrientation)
+            layoutSpecs = ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: justifyLocation, alignItems: .start, children: cellOrientation)
             contentSizeLayout.style.flexShrink = 1
         } else {
             let width = constrainedSize.max.width - self.cellPadding.left - self.cellPadding.right - self.messageOffset
@@ -191,7 +191,7 @@ open class MessageNode: GeneralMessengerCell {
             contentSizeLayout.sizing = .sizeToFit
             contentSizeLayout.children = [self.contentNode!]
             
-            layoutSpecs = ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: justifyLocation, alignItems: .end, children: [createSpacer(), contentSizeLayout])
+            layoutSpecs = ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: justifyLocation, alignItems: .start, children: [createSpacer(), contentSizeLayout])
             contentSizeLayout.style.flexShrink = 1
         }
         
