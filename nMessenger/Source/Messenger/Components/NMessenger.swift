@@ -422,7 +422,7 @@ open class NMessenger: UIView {
      after the block
      - parameter competion: called once the semaphore has expired
      */
-    fileprivate func waitForMessageLock(_ completion: @escaping ()->Void) {
+    open func waitForMessageLock(_ completion: @escaping ()->Void) {
         //DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
             
         DispatchQueue.global().async {
