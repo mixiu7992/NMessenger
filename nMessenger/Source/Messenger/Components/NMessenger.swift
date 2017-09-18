@@ -195,13 +195,14 @@ open class NMessenger: UIView {
      
      - parameter messages: messages to add to the head of the tableview
      */
-    open func endBatchFetchWithMessages(_ messages: [GeneralMessengerCell]) {
+    open func endBatchFetchWithMessages(_ messages: [GeneralMessengerCell], completion: (()->Void)? = nil) {
         //make sure we are in the process of a batch fetch
         if self.state.batchFetchLock.isFetching() {
             self.waitForMessageLock {
                 self.removeCells(atIndexes: [IndexPath(row: 0, section: NMessengerSection.messenger.rawValue)], animation: .none, completion: {
                     self.addMessages(messages, atIndex: 0, scrollsToMessage: false, animation: .none, completion: {
                         self.state.batchFetchLock.completeBatchFetching(true)
+                        completion?()
                     })
                 })
             }
