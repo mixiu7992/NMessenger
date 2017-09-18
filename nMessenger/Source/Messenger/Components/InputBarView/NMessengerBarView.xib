@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="InputBarView" destination="iN0-l3-epB" id="cHc-9u-IsO"/>
                 <outlet property="plusView" destination="Pa9-7P-RgB" id="27Y-sV-QEU"/>
+                <outlet property="plusViewWidth" destination="tUT-U0-5Em" id="UaI-AI-YyQ"/>
                 <outlet property="sendButton" destination="6ZI-Ed-TdT" id="nVB-Vj-6Uw"/>
                 <outlet property="textInputAreaView" destination="Sm0-IA-kLJ" id="B1P-uO-jF0"/>
                 <outlet property="textInputAreaViewHeight" destination="yKk-PO-qMv" id="eU8-rF-jyc"/>
