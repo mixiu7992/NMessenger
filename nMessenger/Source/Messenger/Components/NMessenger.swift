@@ -208,6 +208,10 @@ open class NMessenger: UIView {
         }
     }
     
+    open func getBatchFetchLockIsFetching() -> Bool {
+        return self.state.batchFetchLock.isFetching()
+    }
+    
     //MARK: Removing messages
     /**
      Clears all messages in the messenger. (Fire and forget)
