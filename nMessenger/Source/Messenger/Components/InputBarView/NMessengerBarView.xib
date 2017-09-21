@@ -32,8 +32,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHJ-9A-RDO">
                             <rect key="frame" x="539" y="5" width="56" height="33"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZI-Ed-TdT">
-                                    <rect key="frame" x="0.0" y="0.0" width="56" height="33"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZI-Ed-TdT">
+                                    <rect key="frame" x="0.0" y="3" width="56" height="30"/>
                                     <state key="normal" title="Send"/>
                                     <connections>
                                         <action selector="sendButtonClicked:" destination="-1" eventType="touchUpInside" id="MBh-4t-sK0"/>
@@ -55,7 +55,6 @@
                                     <rect key="frame" x="8" y="6" width="21" height="22"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="22" id="5jc-Cu-7Kh"/>
-                                        <constraint firstAttribute="width" constant="21" id="8IW-Fa-9za"/>
                                     </constraints>
                                     <connections>
                                         <action selector="plusClicked:" destination="-1" eventType="touchUpInside" id="xV0-C3-1Oj"/>
