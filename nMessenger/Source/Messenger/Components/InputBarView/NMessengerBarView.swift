@@ -30,7 +30,7 @@ open class NMessengerBarView: InputBarView, UITextViewDelegate, CameraViewDelega
     @IBOutlet open weak var textInputViewHeight: NSLayoutConstraint!
     
     @IBOutlet open weak var plusView: UIView!
-    @IBOutlet open weak var plusViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var plusViewWidth: NSLayoutConstraint!
     //MARK: Public Parameters
     //Reference to CameraViewController
     open lazy var cameraVC: CameraViewController = CameraViewController()

@@ -195,22 +195,17 @@ open class NMessenger: UIView {
      
      - parameter messages: messages to add to the head of the tableview
      */
-    open func endBatchFetchWithMessages(_ messages: [GeneralMessengerCell], completion: (()->Void)? = nil) {
+    open func endBatchFetchWithMessages(_ messages: [GeneralMessengerCell]) {
         //make sure we are in the process of a batch fetch
         if self.state.batchFetchLock.isFetching() {
             self.waitForMessageLock {
                 self.removeCells(atIndexes: [IndexPath(row: 0, section: NMessengerSection.messenger.rawValue)], animation: .none, completion: {
                     self.addMessages(messages, atIndex: 0, scrollsToMessage: false, animation: .none, completion: {
                         self.state.batchFetchLock.completeBatchFetching(true)
-                        completion?()
                     })
                 })
             }
         }
-    }
-    
-    open func getBatchFetchLockIsFetching() -> Bool {
-        return self.state.batchFetchLock.isFetching()
     }
     
     //MARK: Removing messages
@@ -427,7 +422,7 @@ open class NMessenger: UIView {
      after the block
      - parameter competion: called once the semaphore has expired
      */
-    open func waitForMessageLock(_ completion: @escaping ()->Void) {
+    fileprivate func waitForMessageLock(_ completion: @escaping ()->Void) {
         //DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
             
         DispatchQueue.global().async {
@@ -445,7 +440,7 @@ open class NMessenger: UIView {
      - parameter scrollsToMessage: If marked true, the tableview will scroll to the newly added
      message
      */
-    open func addMessages(_ messages: [GeneralMessengerCell], atIndex index: Int, scrollsToMessage: Bool, animation: UITableViewRowAnimation, completion: (()->Void)?) {
+    fileprivate func addMessages(_ messages: [GeneralMessengerCell], atIndex index: Int, scrollsToMessage: Bool, animation: UITableViewRowAnimation, completion: (()->Void)?) {
         DispatchQueue.main.async {
             if messages.count > 0 {
                 //set the new state
