@@ -630,8 +630,8 @@ open class NMessenger: UIView {
         
         let remainingDistance = contentLength - viewLength - offset
         
-       // return smallContent || remainingDistance <= triggerDistance
-        return !smallContent && remainingDistance <= triggerDistance
+        return smallContent || remainingDistance <= triggerDistance
+//        return !smallContent && remainingDistance <= triggerDistance
     }
 }
 
