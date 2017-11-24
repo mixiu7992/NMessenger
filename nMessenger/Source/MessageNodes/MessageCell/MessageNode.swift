@@ -58,6 +58,15 @@ open class MessageNode: GeneralMessengerCell {
         }
     }
     
+    /**
+     Spacing around the content. Defaults to UIEdgeInsetsMake(10, 0, 0, 0)
+     */
+    open var contentInsets: UIEdgeInsets = UIEdgeInsetsMake(10, 0, 0, 0) {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
+    
     /** Message offset from edge (edge->offset->message content). Defaults to 10*/
     open var messageOffset: CGFloat = 10 {
         didSet {
@@ -175,7 +184,9 @@ open class MessageNode: GeneralMessengerCell {
             
             let ins = ASInsetLayoutSpec(insets: self.avatarInsets, child: avatarBackStack)
             
-            let cellOrientation = isIncomingMessage ? [ins, contentSizeLayout] : [contentSizeLayout,ins]
+            let contentIns = ASInsetLayoutSpec(insets: self.contentInsets, child: contentSizeLayout)
+            
+            let cellOrientation = isIncomingMessage ? [ins, contentIns] : [contentIns,ins]
             
             layoutSpecs = ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: justifyLocation, alignItems: .start, children: cellOrientation)
             contentSizeLayout.style.flexShrink = 1
@@ -191,7 +202,9 @@ open class MessageNode: GeneralMessengerCell {
             contentSizeLayout.sizing = .sizeToFit
             contentSizeLayout.children = [self.contentNode!]
             
-            layoutSpecs = ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: justifyLocation, alignItems: .start, children: [createSpacer(), contentSizeLayout])
+            let contentIns = ASInsetLayoutSpec(insets: self.contentInsets, child: contentSizeLayout)
+            
+            layoutSpecs = ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: justifyLocation, alignItems: .start, children: [createSpacer(), contentIns])
             contentSizeLayout.style.flexShrink = 1
         }
         
