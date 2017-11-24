@@ -58,6 +58,8 @@ open class NMessenger: UIView {
     
     /** ASTableView for messages*/
     open var messengerNode:ASTableNode = ASTableNode()
+    
+    open var hasMoreMessage: Bool = true
     /** Holds a state for the amount of content and if the messenger is fetching or not */
     fileprivate var state: NMessengerState = .initialState
     /** Used internally to prevent unwrapping for every usage*/
@@ -637,6 +639,9 @@ open class NMessenger: UIView {
         let remainingDistance = contentLength - viewLength - offset
         
 //        return smallContent || remainingDistance <= triggerDistance
+        if hasMoreMessage && smallContent {
+            return true
+        }
         return !smallContent && remainingDistance <= triggerDistance
     }
 }
