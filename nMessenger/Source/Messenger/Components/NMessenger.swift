@@ -188,6 +188,12 @@ open class NMessenger: UIView {
             self.addMessages(messages, atIndex: self.state.itemCount, scrollsToMessage: scrollsToMessage, animation: animation, completion:  completion)
         }
     }
+    
+    /// when first push in, you can load message
+    open func batchFetchOnece() {
+        self.state.batchFetchLock.beginBatchFetching()
+        self.batchFetchDataInBackground()
+    }
     /**
      Adds batch fetched messages to the head of the messenger. This **MUST BE** called to end a batch fetch operation. (Fire and forget)
      If no data was received, use an empty array for messages. Calling this outside when a batch fetch has not
@@ -630,8 +636,8 @@ open class NMessenger: UIView {
         
         let remainingDistance = contentLength - viewLength - offset
         
-        return smallContent || remainingDistance <= triggerDistance
-//        return !smallContent && remainingDistance <= triggerDistance
+//        return smallContent || remainingDistance <= triggerDistance
+        return !smallContent && remainingDistance <= triggerDistance
     }
 }
 
