@@ -35,7 +35,7 @@ open class NMessengerBarView: InputBarView, UITextViewDelegate, CameraViewDelega
     //Reference to CameraViewController
     open lazy var cameraVC: CameraViewController = CameraViewController()
     //CGFloat to the fine the number of rows a user can type
-    open var numberOfRows:CGFloat = 3
+    open var numberOfRows: CGFloat = 3
     //String as placeholder text in input view
     open var inputTextViewPlaceholder: String = "NMessenger"
     {

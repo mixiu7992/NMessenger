@@ -41,7 +41,7 @@ open class NMessengerViewController: UIViewController, UITextViewDelegate, NMess
     //This is messenger view
     open var messengerView: NMessenger!
     //This is input view
-    open var inputBarView: InputBarView!
+    open var inputBarView: UIView!
     
     //MARK: Private Variables
     //Bool to indicate if the keyboard is open
