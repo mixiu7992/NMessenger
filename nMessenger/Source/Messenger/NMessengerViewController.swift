@@ -120,9 +120,9 @@ open class NMessengerViewController: UIViewController, UITextViewDelegate, NMess
         loadInputView()
         setUpConstraintsForViews()
         //swipe down
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(NMessengerViewController.respondToSwipeGesture(_:)))
-        swipeDown.direction = UISwipeGestureRecognizerDirection.down
-        self.inputBarView.textInputAreaView.addGestureRecognizer(swipeDown)
+//        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(NMessengerViewController.respondToSwipeGesture(_:)))
+//        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+//        self.inputBarView.textInputAreaView.addGestureRecognizer(swipeDown)
     }
     
     override open func viewDidAppear(_ animated: Bool) {
@@ -233,7 +233,7 @@ open class NMessengerViewController: UIViewController, UITextViewDelegate, NMess
      Closes the messenger on swipe on InputBarView
      */
     func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
-        self.inputBarView.textInputView.resignFirstResponder()
+//        self.inputBarView.textInputView.resignFirstResponder()
     }
     
     //MARK: NMessengerViewController - override to create custom behavior
