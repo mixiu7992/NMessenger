@@ -151,7 +151,7 @@ open class NMessengerViewController: UIViewController, UITextViewDelegate, NMess
      Override this method to create your own custom InputBarView
      - Returns: A view that extends InputBarView
      */
-    open func getInputBar() -> InputBarView
+    open func getInputBar() -> UIView
     {
         return NMessengerBarView(controller: self)
     }
