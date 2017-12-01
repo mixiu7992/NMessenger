@@ -32,8 +32,11 @@ open class MessageNode: GeneralMessengerCell {
         didSet {
             self.setNeedsLayout()
         }
-
     }
+    
+    open let retryNode: ASButtonNode = ASButtonNode()
+    open let acitvity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    open let activityIndicatorNode: ASDisplayNode = ASDisplayNode()
     
     /** ASDisplayNode as the header of the cell*/
     open var headerNode: ASDisplayNode? {
@@ -136,6 +139,12 @@ open class MessageNode: GeneralMessengerCell {
         self.avatarButtonNode.isExclusiveTouch = true
         
         self.contentNode = content
+        
+        self.retryNode.isHidden = true
+        self.activityIndicatorNode.setViewBlock { [weak self]() -> UIView in
+            guard let `self` = self else { return UIView() }
+            return self.acitvity
+        }
         self.automaticallyManagesSubnodes = true
     }
     
@@ -184,7 +193,15 @@ open class MessageNode: GeneralMessengerCell {
             
             let ins = ASInsetLayoutSpec(insets: self.avatarInsets, child: avatarBackStack)
             
-            let contentIns = ASInsetLayoutSpec(insets: self.contentInsets, child: contentSizeLayout)
+            let contentStack = ASStackLayoutSpec.horizontal()
+            contentStack.alignItems = .center
+            contentStack.spacing = 10
+            
+            activityIndicatorNode.style.preferredSize = CGSize(width: 20, height: 20)
+            let retryActivitySpec = ASBackgroundLayoutSpec(child: retryNode, background: activityIndicatorNode)
+            contentStack.children = isIncomingMessage ? [contentSizeLayout, retryActivitySpec] : [retryActivitySpec, contentSizeLayout]
+            
+            let contentIns = ASInsetLayoutSpec(insets: self.contentInsets, child: contentStack)
             
             let cellOrientation = isIncomingMessage ? [ins, contentIns] : [contentIns,ins]
             
@@ -202,7 +219,15 @@ open class MessageNode: GeneralMessengerCell {
             contentSizeLayout.sizing = .sizeToFit
             contentSizeLayout.children = [self.contentNode!]
             
-            let contentIns = ASInsetLayoutSpec(insets: self.contentInsets, child: contentSizeLayout)
+            let contentStack = ASStackLayoutSpec.horizontal()
+            contentStack.alignItems = .center
+            contentStack.spacing = 10
+            
+            activityIndicatorNode.style.preferredSize = CGSize(width: 20, height: 20)
+            let retryActivitySpec = ASBackgroundLayoutSpec(child: retryNode, background: activityIndicatorNode)
+            contentStack.children = isIncomingMessage ? [contentSizeLayout, retryActivitySpec] : [retryActivitySpec, contentSizeLayout]
+            
+            let contentIns = ASInsetLayoutSpec(insets: self.contentInsets, child: contentStack)
             
             layoutSpecs = ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: justifyLocation, alignItems: .start, children: [createSpacer(), contentIns])
             contentSizeLayout.style.flexShrink = 1
